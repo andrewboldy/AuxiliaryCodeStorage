@@ -24,12 +24,13 @@
 //Including RooUtil
 #include "EventNtuple/inc/RooUtil.h"
 
-void RooUtilParticleInfoHist(string filename)
+void RooUtilParticleInfoHist()
 {
+    string filename = "/pnfs/mu2e/tape/phy-nts/nts/mu2e/CeEndpointMix1BBTriggered/MDC2020an_v06_01_01_best_v1_3/root/04/2e/nts.mu2e.CeEndpointMix1BBTriggered.MDC2020an_v06_01_01_best_v1_3.001210_00000046.root";
     //initialize RooUtil to begin reading files
     RooUtil util(filename);
-    int eventNumber = util.GetNEntries();
-    cout << filename << " has " << eventNumber << " entries."
+    int eventNumber = util.GetNEvents();
+    cout << filename << " has " << eventNumber << " entries.";
 
     //Print the Outputs of Entry NUmber, PDG, nhits, startCode, and rank for each particle track
     for (int i_event=0; i_event < eventNumber;i_event++)

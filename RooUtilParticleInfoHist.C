@@ -22,7 +22,7 @@
 #include <TCanvas.h>
 
 //Including RooUtil
-#include "EventNtuple/inc/RooUtil.h"
+#include "EventNtuple/utils/rooutil/inc/RooUtil.hh"
 
 void RooUtilParticleInfoHist()
 {

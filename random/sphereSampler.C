@@ -25,8 +25,10 @@
 
 //ROOT Inclusions
 #include "TH1F.h"
+#include "TH2F.h"
 #include "TCanvas.h"
 #include "TPad.h"
+#include "TGraph2D.h"
 
 //Mu2e Inclusions
 
@@ -54,12 +56,17 @@ std::mt19937 gen(rd()); //standard mersenne_twister generator seeded by rd
 std::uniform_real_distribution<float> dis(0.0,1.0);
 
 //Create the histograms
-TH1F* phiHist = new TH1F("phi", "Phi Values", 1000, -0.5, phiMax+0.5);
-TH1F* thetaHist = new TH1F("theta", "Theta Values", 1000, -0.5, thetaMax+0.5);
+TH1F* phiHist = new TH1F("phiHist", "Phi Values", 100, 0, phiMax);
+TH1F* thetaHist = new TH1F("thetaHist", "Theta Values", 100, 0, thetaMax);
+TH2F* bothAngleHist = new TH2F("bothAngleHist", "Theta vs. Phi", 100, 0, phiMax,100,0,thetaMax);
+bothAngleHist->GetXaxis()->SetTitle("Phi (azimuth)");
+bothAngleHist->GetYaxis()->SetTitle("Theta (polar)");
+bothAngleHist->SetOption("COLZ"); // color-coded
+TGraph2D* scatter3D = new TGraph2D(numPoints);
 
 //Create the Canvases
 TCanvas* c1 = new TCanvas("c1","c1");
-c1->Divide(2,1);
+c1->Divide(2,2);
   //Create a random number for each variable
   for (int i = 0; i < numPoints; i++)
   {
@@ -68,21 +75,38 @@ c1->Divide(2,1);
     float u2 = dis(gen);
     //float phi = disPhi(gen);
     //float theta = disTheta(gen);
-    float phi = acos(1-2*u2);
+    float theta = acos(1-2*u2);
+    float phi = 2*M_PI*u1;
     phiHist->Fill(phi);
-    float theta = 2*M_PI*u1;
     thetaHist->Fill(theta);
-    cout << "Phi Value Number " << i+1 << ": " << phi << endl;
-    cout << "Theta Value Number " << i+1 << ": " << theta << endl;
-    float x = r*cos(theta)*sin(phi);
-    float y = r*sin(theta)*sin(phi);
-    float z = r*cos(phi);
+    bothAngleHist->Fill(phi,theta);
+    if (i<10)
+    {
+      cout << "Phi Value Number " << i+1 << ": " << phi << endl;
+      cout << "Theta Value Number " << i+1 << ": " << theta << endl;
+    }
+    float x = r*cos(phi)*sin(theta);
+    float y = r*sin(phi)*sin(theta);
+    float z = r*cos(theta);
     float magnitude = sqrt(x*x+y*y+z*z);
-    cout << "Distance of point from origin: " << magnitude << endl;
+    scatter3D->SetPoint(i, x, y, z);
   }
+
   c1->cd(1);
   phiHist->Draw();
   c1->cd(2);
   thetaHist->Draw();
+  c1->cd(3);
+  bothAngleHist->Draw();
   c1->SaveAs("sphericalSampleHists.pdf");
+
+  TCanvas* c3D = new TCanvas("c3D", "3D Scatter", 800, 600);
+  scatter3D->SetMarkerStyle(20);   // small filled circles
+  scatter3D->SetMarkerSize(0.8);
+  scatter3D->SetTitle("3D Scatter of Points on Sphere;X;Y;Z");
+  scatter3D->Draw("P");
+
+  // Save the 3D scatter as a PDF
+  c3D->SaveAs("sphere3Dscatter.pdf");
 }
+

@@ -41,7 +41,7 @@ void sphereSampler()
   float phiMax = 2*M_PI;
   float thetaMin = 0;
   float thetaMax = M_PI;
-  float numPoints = 1e6;
+  float numPoints = 1000;
   float r = 1;
 
   //Create the variable number of points (ON-PAUSE)
@@ -80,16 +80,17 @@ c1->Divide(2,2);
     phiHist->Fill(phi);
     thetaHist->Fill(theta);
     bothAngleHist->Fill(phi,theta);
-    if (i<10)
-    {
-      cout << "Phi Value Number " << i+1 << ": " << phi << endl;
-      cout << "Theta Value Number " << i+1 << ": " << theta << endl;
-    }
     float x = r*cos(phi)*sin(theta);
     float y = r*sin(phi)*sin(theta);
     float z = r*cos(theta);
     float magnitude = sqrt(x*x+y*y+z*z);
     scatter3D->SetPoint(i, x, y, z);
+    if (i<10)
+    {
+      cout << "Phi Value Number " << i+1 << ": " << phi << endl;
+      cout << "Theta Value Number " << i+1 << ": " << theta << endl;
+      cout << "Radial Distance " << i+1 << ": " << magnitude << endl;
+    }
   }
 
   c1->cd(1);

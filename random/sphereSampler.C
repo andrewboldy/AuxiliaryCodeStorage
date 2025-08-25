@@ -79,7 +79,7 @@ c1->Divide(2,2);
     float phi = 2*M_PI*u1;
     phiHist->Fill(phi);
     thetaHist->Fill(theta);
-    bothAngleHist->Fill(theta,phi);
+    bothAngleHist->Fill(phi,theta);
     float x = r*cos(phi)*sin(theta);
     float y = r*sin(phi)*sin(theta);
     float z = r*cos(theta);

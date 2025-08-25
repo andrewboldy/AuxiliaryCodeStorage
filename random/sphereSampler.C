@@ -41,7 +41,7 @@ void sphereSampler()
   float phiMax = 2*M_PI;
   float thetaMin = 0;
   float thetaMax = M_PI;
-  float numPoints = 1000;
+  float numPoints = 1e6;
   float r = 1;
 
   //Create the variable number of points (ON-PAUSE)

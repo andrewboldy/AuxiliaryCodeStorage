@@ -58,7 +58,7 @@ std::uniform_real_distribution<float> dis(0.0,1.0);
 //Create the histograms
 TH1F* phiHist = new TH1F("phiHist", "Phi Values", 100, 0, phiMax);
 TH1F* thetaHist = new TH1F("thetaHist", "Theta Values", 100, 0, thetaMax);
-TH1F* cosThetaHist = new  TH1F("cosThetaHist", "Cosine Theta Values", 100, 0, 1);
+TH1F* cosThetaHist = new  TH1F("cosThetaHist", "Cosine Theta Values", 100, -1, 1);
 TH2F* bothAngleHist = new TH2F("bothAngleHist", "Theta vs. Phi", 360, 0, phiMax,360,0,thetaMax);
 bothAngleHist->GetXaxis()->SetTitle("Phi (azimuth)");
 bothAngleHist->GetYaxis()->SetTitle("Theta (polar)");

@@ -101,9 +101,9 @@ c1->Divide(2,2);
   c1->cd(2);
   thetaHist->Draw();
   c1->cd(3);
-  bothAngleHist->Draw();
-  c1->cd(4);
   cosThetaHist->Draw();
+  c1->cd(4);
+  bothAngleHist->Draw();
   c1->SaveAs("sphericalSampleHists.pdf");
 
   TCanvas* c3D = new TCanvas("c3D", "3D Scatter", 800, 600);

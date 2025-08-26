@@ -77,7 +77,7 @@ c1->Divide(2,2);
     //float phi = disPhi(gen);
     //float theta = disTheta(gen);
     float theta = acos(1-2*u2);
-    float cosTheta = M_PI*u2;
+    float cosTheta = cos(theta);
     float phi = 2*M_PI*u1;
     phiHist->Fill(phi);
     thetaHist->Fill(theta);

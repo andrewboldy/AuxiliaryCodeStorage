@@ -72,13 +72,13 @@ c1->Divide(2,2);
   for (int i = 0; i < numPoints; i++)
   {
     //float phi = disPhi(gen);
-    float u1 = dis(gen);
-    float u2 = dis(gen);
+    float rand1 = dis(gen);
+    float rand2 = dis(gen);
     //float phi = disPhi(gen);
     //float theta = disTheta(gen);
-    float theta = acos(1-2*u2);
+    float theta = acos(1-2*rand2);
     float cosTheta = cos(theta);
-    float phi = 2*M_PI*u1;
+    float phi = 2*M_PI*rand1;
     phiHist->Fill(phi);
     thetaHist->Fill(theta);
     cosThetaHist->Fill(cosTheta);

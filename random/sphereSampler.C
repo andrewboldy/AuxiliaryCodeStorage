@@ -82,7 +82,7 @@ c1->Divide(2,2);
     phiHist->Fill(phi);
     thetaHist->Fill(theta);
     cosThetaHist->Fill(cosTheta);
-    bothAngleHist->Fill(phi,theta);
+    bothAngleHist->Fill(phi,cosTheta);
     float x = r*cos(phi)*sin(theta);
     float y = r*sin(phi)*sin(theta);
     float z = r*cos(theta);

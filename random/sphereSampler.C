@@ -59,9 +59,9 @@ std::uniform_real_distribution<float> dis(0.0,1.0);
 TH1F* phiHist = new TH1F("phiHist", "Phi Values", 100, 0, phiMax);
 TH1F* thetaHist = new TH1F("thetaHist", "Theta Values", 100, 0, thetaMax);
 TH1F* cosThetaHist = new  TH1F("cosThetaHist", "Cosine Theta Values", 100, -1, 1);
-TH2F* bothAngleHist = new TH2F("bothAngleHist", "Theta vs. Phi", 360, 0, phiMax,360,0,thetaMax);
+TH2F* bothAngleHist = new TH2F("bothAngleHist", "Phi vs. Cos(theta)", 360, 0, phiMax,360,-1,1);
 bothAngleHist->GetXaxis()->SetTitle("Phi (azimuth)");
-bothAngleHist->GetYaxis()->SetTitle("Theta (polar)");
+bothAngleHist->GetYaxis()->SetTitle("(Cos(theta)");
 bothAngleHist->SetOption("COLZ"); // color-coded
 TGraph2D* scatter3D = new TGraph2D(numPoints);
 
